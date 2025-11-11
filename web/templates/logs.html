@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Logs do Executor</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; padding: 20px; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
+  </style>
+</head>
+<body>
+  <h2>Logs do Executor (tempo real)</h2>
+  <pre id="logContainer">Carregando logs...</pre>
+
+  <script>
+    async function updateLogs() {
+      const res = await fetch('/api/logs');
+      const data = await res.json();
+      document.getElementById('logContainer').textContent = data.join('\n');
+    }
+    setInterval(updateLogs, 2000);
+    updateLogs();
+  </script>
+</body>
+</html>
